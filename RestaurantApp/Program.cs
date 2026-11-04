@@ -30,13 +30,39 @@ namespace RestaurantApp
                 Console.WriteLine($"ID: {res.Id} | ร้าน: {res.Name} | ประเภท: {res.Type} | คะแนน: {res.Rating}");
             }
 
+            AddRestaurant(restaurants);
 
+            Console.WriteLine("\n=== รายการร้านค้าทั้งหมด ===");
+            foreach (Restaurant res in restaurants)
+            {
+                Console.WriteLine($"ID: {res.Id} | ร้าน: {res.Name} | ประเภท: {res.Type} | คะแนน: {res.Rating}");
+            }
+        }
+        public static void AddRestaurant(List<Restaurant> list)
+        {
+            Console.WriteLine("\n--- เพิ่มข้อมูลร้านอาหารใหม่ ---");
+
+            int id = list.Count + 1;
+
+            Console.Write("กรอกชื่อร้าน: ");
+            string name = Console.ReadLine();
+
+            Console.Write("กรอกประเภทร้าน: ");
+            string type = Console.ReadLine();
+
+            Console.Write("กรอกคะแนนร้าน (เช่น 4.5): ");
+            double rating;
+            
+            while (!double.TryParse(Console.ReadLine(), out rating))
+            {
+                Console.Write("กรอกข้อมูลไม่ถูกต้อง กรุณากรอกคะแนนเป็นตัวเลข: ");
+            }
+
+            list.Add(new Restaurant(id, name, type, rating));
+            Console.WriteLine("เพิ่มข้อมูลร้านสำเร็จ!");
         }
     }
-    public class AddRestaurant
-    {
-
-    }
+    
     public class Restaurant
     {
         public int Id { get; set; }
