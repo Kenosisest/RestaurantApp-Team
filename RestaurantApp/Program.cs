@@ -33,6 +33,10 @@ namespace RestaurantApp
 
         }
     }
+    public class AddRestaurant
+    {
+
+    }
     public class Restaurant
     {
         public int Id { get; set; }
