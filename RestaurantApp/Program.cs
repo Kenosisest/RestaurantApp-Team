@@ -30,7 +30,6 @@ namespace RestaurantApp
                 Console.WriteLine($"ID: {res.Id} | ร้าน: {res.Name} | ประเภท: {res.Type} | คะแนน: {res.Rating}");
             }
 
-
         }
     }
     public class Restaurant
@@ -46,5 +45,9 @@ namespace RestaurantApp
             this.Type = type;
             this.Rating = rate;
         }
+    }
+    public class Summary
+    { 
+    
     }
 }
