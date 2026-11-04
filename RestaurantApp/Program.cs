@@ -50,7 +50,7 @@ namespace RestaurantApp
             Console.Write("กรอกประเภทร้าน: ");
             string type = Console.ReadLine();
 
-            Console.Write("กรอกคะแนนร้าน (เช่น 4.5): ");
+            Console.Write("กรอกคะแนนร้าน (เช่น 2.5): ");
             double rating;
             
             while (!double.TryParse(Console.ReadLine(), out rating))
