@@ -73,9 +73,9 @@ namespace RestaurantApp
             }
             Console.WriteLine("==================================================");
         }
-    }
+    
 
-        }
+        
         public static void AddRestaurant(List<Restaurant> list)
         {
             Console.WriteLine("\n--- เพิ่มข้อมูลร้านอาหารใหม่ ---");
