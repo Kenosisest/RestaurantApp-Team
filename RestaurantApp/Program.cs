@@ -30,6 +30,9 @@ namespace RestaurantApp
                 Console.WriteLine($"ID: {res.Id} | ร้าน: {res.Name} | ประเภท: {res.Type} | คะแนน: {res.Rating}");
             }
 
+            Good_Rating goodRating = new Good_Rating();
+
+            goodRating.ShowGoodRating(restaurants);
 
         }
     }
@@ -48,6 +51,18 @@ namespace RestaurantApp
         }
     }
 
-
+    public class Good_Rating
+    {
+        public void ShowGoodRating(List<Restaurant> restaurants)
+        {
+            foreach (Restaurant res in restaurants)
+            {
+                if (res.Rating >= 4.5)
+                {
+                    Console.WriteLine($"ร้าน: {res.Name} | คะแนน: {res.Rating}");
+                }
+            }
+        }
+    }
 
 }
