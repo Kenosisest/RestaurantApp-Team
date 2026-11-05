@@ -13,7 +13,7 @@ namespace RestaurantApp
     internal class Program
     {
         static void Main(string[] args)
-        { 
+        {
             Console.WriteLine("Hello SIT.1/1");
             Console.WriteLine("Weak 2");
             List<Restaurant> restaurants = new List<Restaurant>
@@ -24,7 +24,23 @@ namespace RestaurantApp
             new Restaurant(4, "Huguosi Snacks", "Snacks" ,4.2),
             new Restaurant(5, "Haidilao Hot", "Pot Hot Pot", 4.8)
             };
-           
+
+            foreach (Restaurant res in restaurants)
+            {
+                Console.WriteLine($"ID: {res.Id} | ร้าน: {res.Name} | ประเภท: {res.Type} | คะแนน: {res.Rating}");
+            }
+            Summary summary = new Summary();
+
+            summary.ShowHighestRating(restaurants);
+            summary.ShowLowestRating(restaurants);
+
+            Console.ReadLine();
+            AddRestaurant(restaurants);
+            Good_Rating goodRating = new Good_Rating();
+
+            goodRating.ShowGoodRating(restaurants);
+
+            Console.WriteLine("\n=== รายการร้านค้าทั้งหมด ===");
             foreach (Restaurant res in restaurants)
             {
                 Console.WriteLine($"ID: {res.Id} | ร้าน: {res.Name} | ประเภท: {res.Type} | คะแนน: {res.Rating}");
@@ -59,6 +75,32 @@ namespace RestaurantApp
         }
     }
 
+        }
+        public static void AddRestaurant(List<Restaurant> list)
+        {
+            Console.WriteLine("\n--- เพิ่มข้อมูลร้านอาหารใหม่ ---");
+
+            int id = list.Count + 1;
+
+            Console.Write("กรอกชื่อร้าน: ");
+            string name = Console.ReadLine();
+
+            Console.Write("กรอกประเภทร้าน: ");
+            string type = Console.ReadLine();
+
+            Console.Write("กรอกคะแนนร้าน (เช่น 2.5): ");
+            double rating;
+            
+            while (!double.TryParse(Console.ReadLine(), out rating))
+            {
+                Console.Write("กรอกข้อมูลไม่ถูกต้อง กรุณากรอกคะแนนเป็นตัวเลข: ");
+            }
+
+            list.Add(new Restaurant(id, name, type, rating));
+            Console.WriteLine("เพิ่มข้อมูลร้านสำเร็จ!");
+        }
+    }
+    
     public class Restaurant
     {
         public int Id { get; set; }
@@ -73,4 +115,39 @@ namespace RestaurantApp
             this.Rating = rate;
         }
     }
+    public class Summary
+    {
+        public void ShowHighestRating(List<Restaurant> restaurants)
+        {
+            var highest = restaurants.OrderByDescending(r => r.Rating).First();
+
+            Console.WriteLine("\n=== คะแนนสูงสุด ===");
+            Console.WriteLine($"ร้าน: {highest.Name}");
+            Console.WriteLine($"คะแนน: {highest.Rating}");
+        }
+
+        public void ShowLowestRating(List<Restaurant> restaurants)
+        {
+            var lowest = restaurants.OrderBy(r => r.Rating).First();
+
+            Console.WriteLine("\n=== คะแนนต่ำสุด ===");
+            Console.WriteLine($"ร้าน: {lowest.Name}");
+            Console.WriteLine($"คะแนน: {lowest.Rating}");
+        }
+    }
+
+    public class Good_Rating
+    {
+        public void ShowGoodRating(List<Restaurant> restaurants)
+        {
+            foreach (Restaurant res in restaurants)
+            {
+                if (res.Rating >= 4.5)
+                {
+                    Console.WriteLine($"ร้าน: {res.Name} | คะแนน: {res.Rating}");
+                }
+            }
+        }
+    }
+
 }
