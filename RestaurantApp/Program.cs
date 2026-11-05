@@ -13,7 +13,7 @@ namespace RestaurantApp
     internal class Program
     {
         static void Main(string[] args)
-        { 
+        {
             Console.WriteLine("Hello SIT.1/1");
             Console.WriteLine("Weak 2");
             List<Restaurant> restaurants = new List<Restaurant>
@@ -24,12 +24,17 @@ namespace RestaurantApp
             new Restaurant(4, "Huguosi Snacks", "Snacks" ,4.2),
             new Restaurant(5, "Haidilao Hot", "Pot Hot Pot", 4.8)
             };
-           
+
             foreach (Restaurant res in restaurants)
             {
                 Console.WriteLine($"ID: {res.Id} | ร้าน: {res.Name} | ประเภท: {res.Type} | คะแนน: {res.Rating}");
             }
+            Summary summary = new Summary();
 
+            summary.ShowHighestRating(restaurants);
+            summary.ShowLowestRating(restaurants);
+
+            Console.ReadLine();
             AddRestaurant(restaurants);
             Good_Rating goodRating = new Good_Rating();
 
@@ -78,6 +83,26 @@ namespace RestaurantApp
             this.Name = name;
             this.Type = type;
             this.Rating = rate;
+        }
+    }
+    public class Summary
+    {
+        public void ShowHighestRating(List<Restaurant> restaurants)
+        {
+            var highest = restaurants.OrderByDescending(r => r.Rating).First();
+
+            Console.WriteLine("\n=== คะแนนสูงสุด ===");
+            Console.WriteLine($"ร้าน: {highest.Name}");
+            Console.WriteLine($"คะแนน: {highest.Rating}");
+        }
+
+        public void ShowLowestRating(List<Restaurant> restaurants)
+        {
+            var lowest = restaurants.OrderBy(r => r.Rating).First();
+
+            Console.WriteLine("\n=== คะแนนต่ำสุด ===");
+            Console.WriteLine($"ร้าน: {lowest.Name}");
+            Console.WriteLine($"คะแนน: {lowest.Rating}");
         }
     }
 
