@@ -31,6 +31,9 @@ namespace RestaurantApp
             }
 
             AddRestaurant(restaurants);
+            Good_Rating goodRating = new Good_Rating();
+
+            goodRating.ShowGoodRating(restaurants);
 
             Console.WriteLine("\n=== รายการร้านค้าทั้งหมด ===");
             foreach (Restaurant res in restaurants)
@@ -77,4 +80,19 @@ namespace RestaurantApp
             this.Rating = rate;
         }
     }
+
+    public class Good_Rating
+    {
+        public void ShowGoodRating(List<Restaurant> restaurants)
+        {
+            foreach (Restaurant res in restaurants)
+            {
+                if (res.Rating >= 4.5)
+                {
+                    Console.WriteLine($"ร้าน: {res.Name} | คะแนน: {res.Rating}");
+                }
+            }
+        }
+    }
+
 }
