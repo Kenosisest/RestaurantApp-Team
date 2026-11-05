@@ -30,16 +30,15 @@ namespace RestaurantApp
                 Console.WriteLine($"ID: {res.Id} | ร้าน: {res.Name} | ประเภท: {res.Type} | คะแนน: {res.Rating}");
             }
             Summary summary = new Summary();
-
-            summary.ShowHighestRating(restaurants);
-            summary.ShowLowestRating(restaurants);
-
-            Console.ReadLine();
+            //รับชื่อร้าน
             AddRestaurant(restaurants);
             Good_Rating goodRating = new Good_Rating();
-
+            //แสดงเฉพาะร้านที่คะแนนตั้งแต่ 4.5 ขึ้นไป
             goodRating.ShowGoodRating(restaurants);
-
+            //แสดงร้านที่คะแนนสูงสุด และร้านที่คะแนนต่ำสุด
+            summary.ShowHighestRating(restaurants);
+            summary.ShowLowestRating(restaurants);
+            //ค้นหาร้านจากชื่อ (พิมพ์บางส่วนของชื่อก็ได้) แล้วแสดงผลถ้าไม่พบให้แจ้งผู้ใช้
             Console.WriteLine("\n=== รายการร้านค้าทั้งหมด ===");
             foreach (Restaurant res in restaurants)
             {
